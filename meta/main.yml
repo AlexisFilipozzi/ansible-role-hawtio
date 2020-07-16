@@ -1,5 +1,6 @@
 galaxy_info:
   author: AlexisFilipozzi
+  role_name: hawtio
   description: Install hawtio with systemd
 
   license: license MIT
