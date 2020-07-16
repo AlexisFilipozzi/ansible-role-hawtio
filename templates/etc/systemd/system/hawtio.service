@@ -1,0 +1,12 @@
+[Unit]
+Description=Hawtio
+After=syslog.target
+
+[Service]
+User={{ hawtio_user }}
+Group={{ hawtio_group }}
+ExecStart=/bin/java -jar {{ hawtio_jar_path }} --port {{ hawtio_port }}
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

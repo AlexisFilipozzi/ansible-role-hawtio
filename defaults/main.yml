@@ -1,0 +1,17 @@
+---
+# defaults file for alexisfilipozzi.hawtio
+
+hawtio_base_install_path: "/opt"
+
+hawtio_version: "2.9.1"
+hawtio_install_path: "{{ hawtio_base_install_path }}/hawtio-{{ hawtio_version }}"
+hawtio_jar_path: "{{ hawtio_base_install_path }}/hawtio-{{ hawtio_version }}/hawtio-app-{{ hawtio_version }}.jar"
+
+hawtio_group: "hawtio"
+
+hawtio_user: "hawtio"
+
+
+hawtio_download_jar: "https://repo1.maven.org/maven2/io/hawt/hawtio-app/{{ hawtio_version }}/hawtio-app-{{ hawtio_version }}.jar"
+
+hawtio_port: ~

@@ -1,0 +1,40 @@
+---
+- name: Create group
+  group:
+    name: "{{ hawtio_group }}"
+    state: present
+
+- name: Create user
+  user:
+    name: "{{ hawtio_user }}"
+    group: "{{ hawtio_group }}"
+    state: present
+
+- name: Create install directory
+  file:
+    path: "{{ hawtio_install_path }}"
+    state: directory
+    recurse: yes
+    owner: "{{ hawtio_user }}"
+    group: "{{ hawtio_group }}"
+
+- name: download jar
+  get_url:
+    url: "{{ hawtio_download_jar }}"
+    dest: "{{ hawtio_jar_path }}"
+    timeout: 120
+    owner: "{{ hawtio_user }}"
+    group: "{{ hawtio_group }}"
+    mode: 0755
+
+- name: Configure service file hawtio.service
+  template:
+    src: etc/systemd/system/hawtio.service
+    dest: /etc/systemd/system/hawtio.service
+  notify: restart hawtio
+
+- name: Enable tomcat service on startup
+  systemd:
+    name: "hawtio"
+    enabled: yes
+    daemon_reload: yes
