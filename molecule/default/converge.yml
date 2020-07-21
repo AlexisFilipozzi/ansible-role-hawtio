@@ -1,6 +1,8 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    hawtio_port: 9000
   tasks:
     - name: "Include alexisfilipozzi.hawtio"
       include_role:
